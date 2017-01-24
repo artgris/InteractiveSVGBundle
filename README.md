@@ -10,7 +10,7 @@ Installation
 
 ### 1) Download 
 
-`composer require artgris/interactive-svg-bundle ^0.1`
+`composer require artgris/interactive-svg-bundle`
 
 
 ### 2) Enable Bundle
