@@ -38,8 +38,8 @@ to `app/config/routing.yml`
 to ` app/config/config.yml` (optional) :
 
 ```yml 
-    artgris_interactive_svg:
-        svg_dir: "%kernel.root_dir%/../web/svg"
+artgris_interactive_svg:
+    svg_dir: "%kernel.root_dir%/../web/svg"
 ``` 
 
 svg_dir : directory location of your SVG's (not necessarily a public folder)
