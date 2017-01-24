@@ -1,0 +1,112 @@
+{% extends '@ArtgrisInteractiveSVG/back/base.html.twig' %}
+
+{% form_theme form
+'bootstrap_3_layout.html.twig'
+'@ArtgrisInteractiveSVG/back/form/node_layout.html.twig' %}
+
+{% block body %}
+
+    <ol class="breadcrumb">
+        <li><a href="{{ path('svg_list') }}">SVG's list</a></li>
+        <li class="active">SVG Edition</li>
+    </ol>
+
+    <div class="row">
+
+        <div class="col-md-3" id="svg-zone">
+            {{ svg|raw }}
+        </div>
+
+        <div class="col-md-9" id="svg-list">
+            {% include 'ArtgrisInteractiveSVGBundle:back/include:_flash_message.html.twig' %}
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col-md-9">
+                    <h1>
+                        {{ title }}
+                    </h1>
+                </div>
+                <div class="col-md-3">
+                    <div class="pull-right">
+                        <a href="{{ path('svg_list') }}" class="btn btn-danger">Cancel</a>
+                        <button class="btn btn-success" type="submit">Save</button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            {{ form_errors(form) }}
+
+            <div class="form-group">
+                <label>ViewBox</label> (calculated : <span id="recommend"></span>
+                <button class="btn btn-xs btn-default" id="used-button">used</button>
+                )
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    {{ form_row(form.viewBoxMinx) }}
+                </div>
+                <div class="col-md-3">
+                    {{ form_row(form.viewBoxMiny) }}
+                </div>
+                <div class="col-md-3">
+                    {{ form_row(form.viewBoxWidth) }}
+                </div>
+                <div class="col-md-3">
+                    {{ form_row(form.viewBoxHeight) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="jsfills">Base color</label>
+                    <input type="text" id="jsfills" class="form-control jscolor {required:false}">
+                </div>
+                <div class="col-md-3">
+                    <label for="jsstrokes" >Stroke color</label>
+                    <input type="text" id="jsstrokes" class="form-control jscolor {required:false}">
+                </div>
+                <div class="col-md-3">
+                    <label>Hover color</label>
+                    {{ form_widget(form.dataHoverColor) }}
+                </div>
+            </div>
+            <hr>
+            <div class="table-responsive">
+                <table class="table">
+                    <colgroup>
+                        <col class="col-xs-3">
+                        <col class="col-xs-5">
+                        <col class="col-xs-2">
+                        <col class="col-xs-2">
+                    </colgroup>
+                    <thread>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>Fill color</th>
+                            <th>Stroke color</th>
+                        </tr>
+                    </thread>
+                    <tbody>
+                    {{ form_row(form.nodes) }}
+                    </tbody>
+                </table>
+            </div>
+            {{ form_rest(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/artgrisinteractivesvg/js/back/sticky-kit.min.js') }}"></script>
+    <script src="{{ asset('bundles/artgrisinteractivesvg/js/back/jquery.bootstrap-touchspin.min.js') }}"></script>
+    <script src="{{ asset('bundles/artgrisinteractivesvg/js/back/jscolor.js') }}"></script>
+    <script src="{{ asset('bundles/artgrisinteractivesvg/js/back/back.js') }}"></script>
+
+{% endblock %}

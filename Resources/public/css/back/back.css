@@ -1,0 +1,71 @@
+body {
+    padding: 50px 0;
+}
+
+h1 {
+    margin: 0;
+    font-size: 20px;
+}
+
+svg {
+    border: 1px solid #ccc;
+}
+
+.breadcrumb {
+    margin-top: 10px;
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: rgb(251, 251, 251);
+}
+
+.alert {
+    margin-top: 20px;
+}
+
+/*SVG edit*/
+#recommend {
+    color: #d60601;
+}
+
+#svg-zone {
+    z-index: 99;
+    padding: 10px;
+}
+
+[id^='zone-'] {
+    -webkit-transition: fill .3s ease-out;
+    -moz-transition: fill .3s ease-out;
+    -o-transition: fill .3s ease-out;
+    transition: fill .3s ease-out;
+}
+
+.soft-hide {
+    fill: #f5f5f5 !important;
+    stroke: #797979 !important;
+}
+
+.back-to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+}
+
+@media screen and (max-width: 720px) {
+    .is_stuck {
+        bottom: 0 !important;
+        top: inherit !important;
+        background-color: #eeeeee;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+        filter: alpha(opacity=80);
+        -moz-opacity: 0.8;
+        -khtml-opacity: 0.8;
+        opacity: 0.8;
+    }
+}

@@ -1,0 +1,40 @@
+{% extends '@ArtgrisInteractiveSVG/back/base.html.twig' %}
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="active">SVG's list</li>
+    </ol>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <colgroup>
+                <col class="col-xs-1">
+                <col class="col-xs-10">
+                <col class="col-xs-1">
+            </colgroup>
+            <thread>
+                <tr>
+                    <th>SVG</th>
+                    <th>Nom</th>
+                    <th>Action</th>
+                </tr>
+            </thread>
+            <tbody>
+            {% for file in finder %}
+                {% set url = path('svg_edit', {svgRelativePathname:file.relativePathname}) %}
+                <tr>
+                    <td>
+                        {{ file.contents|raw }}
+                    </td>
+                    <td>
+                        <a href="{{ url }}">{{ file.relativePathname }}</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Edit"
+                           href="{{ url }}">Edit</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

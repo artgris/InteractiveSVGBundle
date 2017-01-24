@@ -1,0 +1,23 @@
+.svg {
+    position: relative;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+#tooltip_elm {
+    display: none;
+    background: #ffffff;
+    border: solid rgba(0, 0, 0, 0.11) 1px;
+    position: absolute;
+    padding: 1px 4px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+[id^='zone-'] {
+    -webkit-transition: fill .3s ease-out;
+    -moz-transition: fill .3s ease-out;
+    -o-transition: fill .3s ease-out;
+    transition: fill .3s ease-out;
+}

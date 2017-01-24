@@ -1,0 +1,6 @@
+services:
+    interactive_extension:
+        class: Artgris\Bundle\InteractiveSVGBundle\Twig\InteractiveSVGExtension
+        arguments: ['%artgris_interactive_svg%']
+        tags:
+            - { name: twig.extension }

@@ -1,0 +1,14 @@
+{% block node_label %}{% endblock %}
+{% block node_errors %}{% endblock %}
+{% block node_widget %}
+    <tr class="node" id="{{ form.id.vars.value|replace({'zone':'list'}) }}">
+        <td>
+            {{ form_widget(form.id) }}
+        </td>
+        <td>
+            {{ form_widget(form.title) }}
+        </td>
+        <td> {{ form_widget(form.colorCode) }}</td>
+        <td> {{ form_widget(form.strokeCode) }}</td>
+    </tr>
+{% endblock %}
