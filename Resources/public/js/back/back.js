@@ -23,7 +23,7 @@ $svgZones.hover(function () {
     activeZone()
 }).click(function () {
     var $list = $('#' + $(this).attr('id').replace('zone', 'list'));
-    $svgLists.not($list.toggleClass("warning")).removeClass('warning');
+    $svgLists.not($list.toggleClass("info")).removeClass('info');
 
     $('html, body').stop().animate({scrollTop: $list.offset().top - 100}, 300);
 });

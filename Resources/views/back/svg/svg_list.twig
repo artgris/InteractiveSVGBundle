@@ -1,9 +1,18 @@
 {% extends '@ArtgrisInteractiveSVG/back/base.html.twig' %}
+
+{% form_theme form
+'bootstrap_3_layout.html.twig' %}
+
 {% block body %}
     <ol class="breadcrumb">
         <li class="active">SVG's list</li>
     </ol>
-
+    {% include 'ArtgrisInteractiveSVGBundle:back/include:_flash_message.html.twig' %}
+    <p class="text-right">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addModal">
+            Add an SVG File
+        </button>
+    </p>
     <div class="table-responsive">
         <table class="table table-striped">
             <colgroup>
@@ -37,4 +46,38 @@
             </tbody>
         </table>
     </div>
+    {# Modal #}
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addSVG">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add an SVG File</h4>
+                </div>
+                {{ form_start(form) }}
+                <div class="modal-body">
+                    {{ form_widget(form) }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script>
+        {% if not form.vars.valid %}
+        $('#addModal').modal('show');
+        {% endif %}
+    </script>
+
 {% endblock %}

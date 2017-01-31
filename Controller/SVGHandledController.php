@@ -3,9 +3,11 @@
 namespace Artgris\Bundle\InteractiveSVGBundle\Controller;
 
 use Artgris\Bundle\InteractiveSVGBundle\Form\NodesType;
+use Artgris\Bundle\InteractiveSVGBundle\Form\SVGType;
 use Artgris\Bundle\InteractiveSVGBundle\Utils\SVGElement;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,8 +23,10 @@ class SVGHandledController extends Controller
      * SVG's full list
      *
      * @Route("/", name="svg_list")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
         $finder = new Finder();
         $finder->in($this->getSvgDir())->name('*.svg');
@@ -31,8 +35,23 @@ class SVGHandledController extends Controller
             $svgElement = new SVGElement($svg->getRealPath());
             $svgElement->normalizedSvg();
         }
+        $form = $this->createForm(SVGType::class);
 
-        return $this->render('@ArtgrisInteractiveSVG/back/svg/svg_list.twig', ['finder' => $finder]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $svgFile = $form->getData()['svg'];
+            /** @var UploadedFile $svgFile */
+            $newName = bin2hex(random_bytes(3)) . '-' . $svgFile->getClientOriginalName();
+            $svgFile->move($this->getSvgDir(), $newName);
+            $this->addFlash('success', "SVG {$newName} added successfully!");
+            $this->redirectToRoute("svg_list");
+        }
+
+        return $this->render('@ArtgrisInteractiveSVG/back/svg/svg_list.twig', [
+            'finder' => $finder,
+            'form' => $form->createView()
+        ]);
     }
 
     /**
