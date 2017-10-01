@@ -1,7 +1,6 @@
 # InteractiveSVGBundle
 
-Symfony Bundle to handle SVG graphics elements (titles, fills and strokes colors) and generate an interactive SVG - 
-[Demo Website](http://symfonyhub.artgris.me/bundle/interactive_svg_bundle)
+Symfony Bundle to handle SVG graphics elements (titles, fills and strokes colors) and generate an interactive SVG
 
 Installation
 ------------
